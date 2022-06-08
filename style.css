@@ -1,0 +1,41 @@
+table.gameboard { 
+  border-spacing: 5px;
+  border-collapse: separate;
+  border: 9px rgb(15, 94, 58) solid; 
+  margin-left: auto; 
+  margin-right: auto;
+  border-radius: 10px;
+}
+.gameboard td { 
+  opacity: 1;
+  font-family: arial, sans-serif; 
+  font-size: 1.5em; 
+  font-weight: bold; 
+  text-align: center; 
+  vertical-align: middle; 
+  color: black; 
+  background: #ffe; 
+  margin: 2px; padding: 6px; 
+  border: 1px #eef solid; 
+  width: 5em;
+  height: 5em;
+  border-radius: 3px 6px;
+
+  /*makes elements unselectable*/
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+td.clicked{ 
+  /*makes elements unselectable*/
+  background: rgb(221, 18, 18);
+  opacity: 0.5;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
