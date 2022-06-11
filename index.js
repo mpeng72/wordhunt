@@ -6,6 +6,7 @@ var currentWord = "";
 var vis = Array(boardSize);
 var alreadySwiped = new Map();
 var temp = "";
+var gameIsPlaying = false;
 
 function createBoardArr()
 {
@@ -36,13 +37,6 @@ function createBoardArr()
             }
         }
     }
-    var resultsArr = Array.from(result);
-    resultsArr.sort((a,b) => a.length - b.length);
-    for(let ele of resultsArr)
-    {
-        console.log(ele);
-    }
-
 }
 
 //Implement Trie Data Structure
@@ -272,12 +266,13 @@ function beginTimer()
     {
         cell.className = "clickable";
     }
-    var sec = 5;
+    var sec = 80;
     var timer = setInterval(function(){
         document.getElementById('scoreboardtimer').innerHTML="Time:" + sec+'s';
         sec--;
         if (sec < 0) {
             clearInterval(timer);
+            gameIsPlaying = false;       
             document.getElementById('scoreboardtimer').innerHTML="Click here to reset the game";
             document.getElementById("scoreboardtimer").onclick = function()
             {
@@ -290,41 +285,45 @@ function beginTimer()
 //actually playing the game
 function game()
 {
+    gameIsPlaying = true;
     beginTimer();
     var mouseCheck = false;
     var found = 0;
     var currCell;
-    
+
     for(let cell1 of document.querySelectorAll("td.clickable"))
     {
         cell1.onmousedown = function()
         {
-            checkIfSwipable(cell1);
-            mouseCheck = true;
-            cell1.className = "clicked";
-            appendCharacter(cell1.textContent);
-            for(let cell2 of document.querySelectorAll("td"))
+            if(gameIsPlaying)
             {
-                cell2.onmouseleave = function()
+                checkIfSwipable(cell1);
+                mouseCheck = true;
+                cell1.className = "clicked";
+                appendCharacter(cell1.textContent);
+                for(let cell2 of document.querySelectorAll("td"))
                 {
-                    var answerboard = document.getElementById("answerboardtd");
-                    if(answerboard.textContent == "already found")
+                    cell2.onmouseleave = function()
                     {
-                        answerboard.textContent = temp;
-                    }
-                }
-                cell2.onmouseenter = function()
-                {
-                    if(mouseCheck && cell2.className == "clickable")
-                    {
-                        cell2.className = "clicked";
-                        checkIfSwipable(cell2);
-                        appendCharacter(cell2.textContent);   
-                        if(cell2.className!="found")
+                        var answerboard = document.getElementById("answerboardtd");
+                        if(answerboard.textContent == "already found")
                         {
-                            for(let cell3 of document.querySelectorAll("td.found"))
+                            answerboard.textContent = temp;
+                        }
+                    }
+                    cell2.onmouseenter = function()
+                    {
+                        if(mouseCheck && cell2.className == "clickable")
+                        {
+                            cell2.className = "clicked";
+                            checkIfSwipable(cell2);
+                            appendCharacter(cell2.textContent);   
+                            if(cell2.className!="found")
                             {
-                                cell3.className = "clicked";
+                                for(let cell3 of document.querySelectorAll("td.found"))
+                                {
+                                    cell3.className = "clicked";
+                                }
                             }
                         }
                     }
@@ -332,6 +331,8 @@ function game()
             }
         }
     }
+
+    
     //if mouse up then reset the gameboard and answerboard
     window.addEventListener('mouseup', function(){
         for(let foundCells of this.document.querySelectorAll("td"))
