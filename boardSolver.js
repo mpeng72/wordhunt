@@ -1,32 +1,21 @@
-const board = new Array(4);
-
-for(var i = 0;i<4;i++)
-{
-    board[i] = new Array(4);
-    for(var j = 0;j<4;j++)
-    {
-        board[i][j]=genLetters();
-    }
-}
-const map1  = new Map();
 
 var fs = require('fs');
 var text = fs.readFileSync('wordlist.txt', 'utf8');
-var words = text.split("\n");
- 
-for(var i = 0;i<words.length;i++)
+var words = text.split(/\s+/);
+/*for(var i = 0;i<words.length;i++)
 {
     var temp = words[i].substring(0,words[i].length-1);
     words[i]=temp;
     //if(temp.length>=3)map1.set(temp, 1);
-}
+}*/
 
 function genLetters()
 {
-    let charcode = Math.round(65 + Math.random()*25)
-    return String.fromCharCode(charcode)
+    var characters = "AAAAAAAAABBCCDDDDEEEEEEEEE" + 
+    "EFFGGIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRR" +
+    "RRRRSSSSSSTTTTTTUUUUVVWWXYYZ";
+    return characters.charAt(Math.floor(Math.random() * characters.length));
 }
-
 
 const Row = 4, Col = 4;
 var vis = Array(Row);
@@ -84,9 +73,22 @@ function dfs(r,c,curr, node)
 
 }
 
-const result = new Set();
-const trie = new Trie(words);
+
 const start = Date.now();
+
+var board = new Array(4);
+
+for(var i = 0;i<4;i++)
+{
+    board[i] = new Array(4);
+    for(var j = 0;j<4;j++)
+    {
+        board[i][j]=genLetters();
+    }
+}
+let result = new Set();
+const trie = new Trie(words);
+
 for(var i = 0;i<board.length;i++)
 {
     for(var j = 0;j<board[i].length;j++)
@@ -94,6 +96,9 @@ for(var i = 0;i<board.length;i++)
         dfs(i,j,"", trie.root);
     }
 }
+
+
+
 
 function getScore(s)
 {
@@ -109,9 +114,11 @@ function getScore(s)
 }
 
 var totalScore = 0;
-for(let ele of result)
+var resultsArr = Array.from(result);
+resultsArr.sort((a,b) => a.length - b.length);
+for(let ele of resultsArr)
 {
-    console.log(ele);
+    console.log(ele + " " + ele.length);
     var score = getScore(ele);
     totalScore += score;
 }
