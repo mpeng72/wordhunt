@@ -1,2 +1,2 @@
 # wordhunt
-Online gamepidgeon wordhunt game
+Browser version of gamepidgeon's wordhunt game
