@@ -1,22 +1,24 @@
-table.gameboard { 
+table.gameboard 
+{ 
   border-spacing:40px 40px;
   border-collapse: separate;
-  border: 10px rgb(15, 94, 58) solid; 
+  border: 10px rgb(17, 17, 17) solid; 
   margin-left: auto; 
   margin-right: auto;
   border-radius: 10px;
 }
-.gameboard td { 
+.gameboard td 
+{ 
   opacity: 1;
-  font-family: arial, sans-serif; 
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 75px; 
   font-weight: bold; 
   text-align: center; 
   vertical-align: middle; 
-  color: black; 
-  background: rgb(56, 167, 195); 
+  color: rgb(0, 0, 0); 
+  background-image: url('woodtexture.jpg');
   margin: 2px; padding: 6px; 
-  border: 1px rgb(15, 202, 18) solid; 
+  border: 2px rgb(14, 14, 14) solid; 
   width: 100px;
   height: 100px;
   border-radius: 3px 6px;
@@ -28,9 +30,10 @@ table.gameboard {
   -ms-user-select: none;
   user-select: none;
 }
-td.clicked{ 
+td.clicked
+{ 
   background: rgb(221, 18, 18);
-  opacity: 0.5;
+  opacity: 0.75;
 
   /*makes elements unselectable*/
   -moz-user-select: -moz-none;
@@ -39,9 +42,10 @@ td.clicked{
   -ms-user-select: none;
   user-select: none;
 }
-td.found{
+td.found
+{
   background: rgb(121, 173, 38);
-  opacity: 0.5;
+  opacity: 0.75;
   /*makes elements unselectable*/
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
@@ -49,32 +53,45 @@ td.found{
   -ms-user-select: none;
   user-select: none;
 }
-table.answerboardtable{
+table.answerboardtable
+{
   border-spacing: 10px;
   font-family: arial, sans-serif; 
-  font-size: 3em;
-  border: 2px rgb(15, 94, 58) solid; 
+  font-weight: bold;
+  font-size: 60px;
+  border: 5px rgb(0, 0, 0) solid; 
   margin-left: auto; 
   margin-right: auto;
   margin-top: 25px;
   border-radius: 100px;
   text-align:center;
-  width: 10em;
-  height: 2em;
+  width: 600px;
+  height: 100px;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 table.scoreboardtable
 {
   border-spacing: 10px;
   font-family: arial, sans-serif; 
+  font-weight: bold;
   font-size: 3em;
-  border: 2px rgb(15, 94, 58) solid; 
+  border: 5px rgb(0, 0, 0) solid; 
   margin-left: auto; 
   margin-right: auto;
   margin-bottom: 25px;
   border-radius: 100px;
   text-align:center;
   width: 10em;
-  height: 2em;
+  height: 200px;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #scoreboardtimer
 {
@@ -85,6 +102,12 @@ table.scoreboardtable
 {
   text-align: center;
 }
-
+body
+{
+  background-image: url('background.png');
+  background-repeat: no-repeat;
+  background-size: 100% 130%;
+  background-position: center center;
+}
 
 
