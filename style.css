@@ -1,6 +1,6 @@
 table.gameboard 
 { 
-  border-spacing:40px 40px;
+  border-spacing: 40px 40px;
   border-collapse: separate;
   border: 10px rgb(17, 17, 17) solid; 
   margin-left: auto; 
@@ -112,8 +112,8 @@ body
 {
   background-image: url('background.png');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-  padding-bottom: 300px;
+  background-size: cover;
+  height: 100vh;
   background-position: center center;
 
 }
