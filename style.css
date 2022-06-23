@@ -112,9 +112,11 @@ body
 {
   background-image: url('background.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   height: 100vh;
   background-position: center center;
-
 }
 
